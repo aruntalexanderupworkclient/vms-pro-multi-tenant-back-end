@@ -1,0 +1,39 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+###############################################################################
+# Set the merge driver for project and solution files
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Alarm! Alarm!). The temporary ????*- Loss files are also
+# temporary, so this is fine.
+###############################################################################
+*.sln        text eol=crlf
+*.csproj     text eol=crlf
+
+###############################################################################
+# Set default behavior for command prompt diff.
+#
+# This is need for earlier builds of msysgit that did not have it on by
+# default for csharp files.
+# Note: This is only used by command line
+###############################################################################
+*.cs         text diff=csharp
+*.razor      text diff=html
+
+###############################################################################
+# Set binary files
+###############################################################################
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.ico        binary
+*.zip        binary
+*.gz         binary
+*.tar        binary
+*.pdf        binary
+*.dll        binary
+*.exe        binary

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.23" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.Application\VMS.Application.csproj" />
+    <ProjectReference Include="..\VMS.Infrastructure\VMS.Infrastructure.csproj" />
+    <ProjectReference Include="..\VMS.Shared\VMS.Shared.csproj" />
+    <ProjectReference Include="..\VMS.Core\VMS.Core.csproj" />
+  </ItemGroup>
+
+</Project>
