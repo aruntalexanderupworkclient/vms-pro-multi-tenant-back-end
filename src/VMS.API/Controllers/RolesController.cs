@@ -55,6 +55,15 @@ public class RolesController : ControllerBase
         return result.Success ? Ok(result) : NotFound(result);
     }
 
+    [HttpDelete("{id:guid}")]
+    [HasPermission("Roles", "CanDelete")]
+    [ProducesResponseType(typeof(ApiResponse), 200)]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var result = await _roleService.DeleteAsync(id);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
+
     [HttpPut("{id:guid}/permissions")]
     [HasPermission("Roles", "CanUpdate")]
     [ProducesResponseType(typeof(ApiResponse), 200)]

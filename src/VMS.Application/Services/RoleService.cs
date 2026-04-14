@@ -73,6 +73,22 @@ public class RoleService : IRoleService
         return ApiResponse<RoleDto>.SuccessResponse(_mapper.Map<RoleDto>(role), "Role updated successfully.");
     }
 
+    public async Task<ApiResponse> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var role = await _uow.Repository<Role>().GetByIdAsync(id, cancellationToken);
+        if (role == null)
+            return ApiResponse.FailResponse("Role not found.", "ROLE_NOT_FOUND");
+
+        var hasUsers = await _uow.Repository<User>().AnyAsync(u => u.RoleId == id, cancellationToken);
+        if (hasUsers)
+            return ApiResponse.FailResponse("Cannot delete role that is assigned to users.", "ROLE_IN_USE");
+
+        _uow.Repository<Role>().SoftDelete(role);
+        await _uow.SaveChangesAsync(cancellationToken);
+
+        return ApiResponse.SuccessResponse("Role deleted successfully.");
+    }
+
     public async Task<ApiResponse> SetPermissionsAsync(Guid roleId, SetRolePermissionsDto dto, CancellationToken cancellationToken = default)
     {
         var role = await _uow.Repository<Role>().Query()
